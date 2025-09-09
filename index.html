@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eva 的測試規劃作品集</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            font-size: 18px;
+            color: #555;
+        }
+        .download-btn, .video-btn {
+            display: inline-block;
+            margin: 15px 10px;
+            padding: 15px 30px;
+            font-size: 18px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .download-btn:hover, .video-btn:hover {
+            background-color: #0056b3;
+        }
+        @media (max-width: 600px) {
+            .download-btn, .video-btn {
+                display: block;
+                width: 80%;
+                margin: 10px auto;
+            }
+        }
+        .tech-section {
+            margin-top: 30px;
+            text-align: left;
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .tech-section h2 {
+            color: #007bff;
+        }
+        .tech-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .tech-section li {
+            font-size: 16px;
+            color: #333;
+            margin: 15px 0;
+        }
+        .env-code {
+            background: #f0f0f0;
+            padding: 10px;
+            border-radius: 6px;
+            font-family: monospace;
+            white-space: pre-wrap;      /* 保留換行與縮排 */
+            word-break: break-all;      /* 強制長文字換行 */
+            overflow-x: auto;           /* 桌機橫向可滑動 */
+            margin-top: 10px;
+        }
+        #video-container {
+            display: none;
+            margin-top: 20px;
+        }
+        #video-description {
+            display: none;
+            margin-top: 15px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Eva 的測試規劃作品集</h1>
+    <p>包含手動測試與自動化測試案例、缺陷追蹤與測試報告概念</p>
+
+    <a href="manual_test.pdf" target="_blank" class="download-btn">打開手動測試 PDF</a>
+    <a href="automation_test.pdf" target="_blank" class="download-btn">打開自動化測試 PDF</a>
+    <a href="https://github.com/zxcluo/evawork/main/test.case.png" 
+       target="_blank" class="download-btn">點擊這裡查看 Test Case</a>
+
+    <div class="tech-section">
+        <h2>🔧 技術方法</h2>
+        <ul>
+            <li>
+                使用 <strong>.env</strong> 管理測試變數：
+                <div class="env-code">
+IMAGE_PATH='C:\Users\user\Desktop\測試圖片'
+REPORT_PATH='C:\Users\user\Downloads\Write\Scripts\CustomerService_new\report'
+WEB_ADDRESS='http://test.example.com/'
+PROMOTION_WEB='https://promo.example.com/'
+FILE_NAME='frontlog.txt'
+MAIN_ACCOUNT='web_eva'
+MAIN_PASSWORD='123456'
+SECOND_ACCOUNT_ID='197'
+NEW_ACCOUNT_ID='473'
+                </div>
+            </li>
+            <li>
+                測試報告路徑設定：
+                <div class="env-code">
+REPORT_PATH='C:\Users\user\Downloads\Write\Scripts\CustomerService_new\report'
+FILE_NAME='frontlog.txt'
+                </div>
+            </li>
+            <li>Selenium自動化測試流程</li>
+            <li>
+                權限管理自動化測試說明：
+                <button class="video-btn" onclick="showVideo()">觀看影片</button>
+                <div id="video-container">
+                    <video width="100%" controls>
+                        <source src="https://github.com/zxcluo/evawork/raw/main/permission_management.mp4" type="video/mp4">
+                        您的瀏覽器不支援影片播放。
+                    </video>
+                </div>
+                <div id="video-description">
+                    <strong>專案平台：</strong> Monday<br>
+                    <strong>測試模組：</strong> 權限管理<br>
+                    <strong>涵蓋子功能：</strong><br>
+                    - 操作員群組：新增群組、修改群組資訊（名稱、狀態、模組權限）、刪除群組、驗證操作後 UI 與資料正確性<br>
+                    - 操作員維護：新增操作員（帳號、名稱、密碼、指派群組與角色）、啟用/停用操作員、查詢操作員、修改密碼（系統管理員代為或自行修改）、刪除操作員帳號<br>
+                    <strong>主要執行項目：</strong><br>
+                    - 建立 Selenium 測試環境（專案架構、模組分類、驅動初始化）<br>
+                    - 撰寫登入 / 登出 Monday 的自動化測試腳本<br>
+                    - 撰寫操作員群組與操作員維護功能測試腳本<br>
+                    - 覆蓋新增、修改、刪除、權限驗證、密碼修改與登入驗證全流程<br>
+                    - 設計並驗證穩定的元素定位策略（XPath / CSS）
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        function showVideo() {
+            const container = document.getElementById('video-container');
+            const desc = document.getElementById('video-description');
+            if(container.style.display === 'none') {
+                container.style.display = 'block';
+                desc.style.display = 'block';
+                container.querySelector('video').play();
+            } else {
+                container.style.display = 'none';
+                desc.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
